@@ -1,0 +1,45 @@
+<style>
+th {
+    text-align: left;
+}
+</style>
+<h2>{{contest.name}}</h2>
+
+<h3>Contest Stats</h3>
+<div>
+    <div><b>Submissions:</b> {{submission_count}}</div>
+    <div><b>Submitters:</b> {{submitter_count}}</div>
+    <div><b>Votes:</b> {{vote_count}}</div>
+</div>
+<hr/>
+<h3>Voting</h3>
+<div>
+</div>
+<div>
+    <table border="0" cellpadding="5">
+        <tr>
+            <th>Voter Name</th><th>Votes Cast</th><th>Percent Complete</th><th>Average Score</th>
+        </tr>
+    {% for voter in voters.values %}
+        <tr>
+            <td>{{voter.name}}</td><td>{{voter.count}}</td><td>{{voter.percent|floatformat:1}}%</td><td>{{voter.average|floatformat:2}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <h3><a href="{% url 'vote' contest.id %}">Vote Now</a></h3>
+</div>
+<hr/>
+
+<h3>Results</h3>
+<div>
+<table border="0" cellpadding="5">
+    <tr>
+        <th>Score</th><th>Image</th><th>Author</th>
+    </tr>
+{% for result in results.values|dictsortreversed:"score" %}
+    <tr>
+        <td>{{result.score}}</td><td><a href="{{result.photo.image_url}}" target="_blank">{{result.photo.title}}s</a></td><td>{{result.photo.author}}</td>
+    </tr>
+{% endfor %}
+</table>
+</div>

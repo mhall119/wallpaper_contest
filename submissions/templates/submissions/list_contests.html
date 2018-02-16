@@ -1,0 +1,18 @@
+<style>
+th {
+    text-align: left;
+}
+</style>
+<h2>Contests</h2>
+
+<table border="0" cellpadding="5">
+    <tr>
+        <th>Contest</th><th>Submissions</th>
+    </tr>
+{% for contest in contests %}
+    <tr>
+        <td><a href="{% url 'show-contest' contest.id %}">{{contest.name}}</a></td><td>{{contest.submission_set.count}}</td>
+    </tr>
+{% endfor %}
+</table>
+

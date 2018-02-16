@@ -1,0 +1,42 @@
+<h2>{{contest.name}}</h2>
+
+<form action="{% url 'vote' contest.id %}" method="POST">
+<input type='hidden' name='csrfmiddlewaretoken' value='{{csrf_token}}' />
+<table border="1">
+    <tr>
+        <th></th><th width="1024">Image</th><th width="50px">0</th><th width="50px">1</th><th width="50px">2</th><th width="50px">3</th><th width="50px">4</th><th width="50px">5</th>
+    </tr>
+    {% for photo in submissions %}
+    <tr>
+        <td rowspan="2" align="center">
+            {{photo.index}}
+        </td>
+        <td rowspan="2">
+            <img src="{{photo.image_url}}" title="{{photo.title}}" width="1024">
+        </td>
+        <th colspan="6" height="3em">{{photo.title}}</th>
+    </tr>
+    <tr>
+        <td align="center">
+            0<br><input type="radio" name="vote_{{photo.id}}" value="0" checked>
+        </td>
+        <td align="center">
+            1<br><input type="radio" name="vote_{{photo.id}}" value="1">
+        </td>
+        <td align="center">
+            2<br><input type="radio" name="vote_{{photo.id}}" value="2">
+        </td>
+        <td align="center">
+            3<br><input type="radio" name="vote_{{photo.id}}" value="3">
+        </td>
+        <td align="center">
+            4<br><input type="radio" name="vote_{{photo.id}}" value="4">
+        </td>
+        <td align="center">
+            5<br><input type="radio" name="vote_{{photo.id}}" value="5">
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<input type="submit" name="Submit" />
+</form>
