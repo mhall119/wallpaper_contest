@@ -22,7 +22,10 @@ th {
         </tr>
     {% for voter in voters.values %}
         <tr>
-            <td>{{voter.name}}</td><td>{{voter.count}}</td><td>{{voter.percent|floatformat:1}}%</td><td>{{voter.average|floatformat:2}}</td>
+            <td>{{voter.name}}</td>
+            <td>{{voter.count}}</td>
+            <td>{{voter.percent|floatformat:1}}%</td>
+            <td>{{voter.average|floatformat:2}}</td>
         </tr>
     {% endfor %}
     </table>
@@ -34,11 +37,14 @@ th {
 <div>
 <table border="0" cellpadding="5">
     <tr>
-        <th>Score</th><th>Image</th><th>Author</th>
+        <th>Score</th><th>Image</th><th>Author</th><th>Category</th>
     </tr>
 {% for result in results.values|dictsortreversed:"score" %}
     <tr>
-        <td>{{result.score}}</td><td><a href="{{result.photo.image_url}}" target="_blank">{{result.photo.title}}s</a></td><td>{{result.photo.author}}</td>
+        <td>{{result.score}}</td>
+        <td><a href="{{result.photo.image_url}}" target="_blank">{{result.photo.title}}</a></td>
+        <td>{{result.photo.author}}</td>
+        <td>{{result.photo.category}}</td>
     </tr>
 {% endfor %}
 </table>
