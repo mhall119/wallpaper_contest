@@ -45,6 +45,7 @@ th {
         <td><a href="{{result.photo.image_url}}" target="_blank">{{result.photo.title}}</a></td>
         <td>{{result.photo.author}}</td>
         <td>{{result.photo.category}}</td>
+        {% if request.user.is_superuser %}<td><a href="/admin/submissions/submission/{{result.photo.id}}/change/">[Edit]</a></td>{% endif %}
     </tr>
 {% endfor %}
 </table>
